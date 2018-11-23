@@ -1,6 +1,6 @@
 <?php
 namespace carcharing;
-abstract class Carsharing implements interfaceCarsharing
+abstract class Carsharing implements InterfaceCarsharing
 {
     public $age;
     public function ageAnalis($age) // Метод анализа возраста водителя
@@ -17,5 +17,5 @@ abstract class Carsharing implements interfaceCarsharing
         return 'Возраст водителя соответствует требованиям';
     }
 
-    abstract public function cost($kmNumber, $minNumber, $age, $pricePerKm, $pricePerTime, $ageRate);
+    abstract public function cost($kmNumber, $minNumber, $age, $pricePerKm, $pricePerTime);
 }

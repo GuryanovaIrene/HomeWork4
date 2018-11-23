@@ -9,6 +9,17 @@
 <form method="post" action="carsharing.php">
     <table>
         <tr>
+            <td>Выберите тариф</td>
+            <td>
+                <select name="tariff">
+                    <option value="TariffBase">Тариф базовый</option>
+                    <option value="TariffHourly">Тариф почасовой</option>
+                    <option value="TariffDaily">Тариф суточный</option>
+                    <option value="TariffStudent">Тариф студенческий</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>Количество километров</td>
             <td><input type="number" name="kmNumber"></td>
         </tr>

@@ -6,15 +6,14 @@ class TariffBase extends Carsharing
     public $kmNumber;
     public $minNumber;
     public $age;
-    protected $pricePerKm = 10;
-    protected $pricePerTime = 3;
-    protected $ageRate = 1.1;
 
-    public function cost($kmNumber, $minNumber, $age, $pricePerKm, $pricePerTime, $ageRate)
+    public function cost($kmNumber, $minNumber, $age, $pricePerKm = 10, $pricePerTime = 3)
     {
         if ($age >= 18 and $age <= 21) {
-            return ($pricePerKm * $kmNumber + $pricePerTime * $minNumber) * $ageRate;
+            $ageRate = 1.1;
+        } else {
+            $ageRate = 1;
         }
-        return $pricePerKm * $kmNumber + $pricePerTime * $minNumber;
+        return ($pricePerKm * $kmNumber + $pricePerTime * $minNumber) * $ageRate;
     }
 }
