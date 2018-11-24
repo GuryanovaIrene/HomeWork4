@@ -1,5 +1,5 @@
 <?php
-namespace carcharing;
+namespace carsharing;
 abstract class Carsharing implements InterfaceCarsharing
 {
     public $age;
@@ -16,6 +16,8 @@ abstract class Carsharing implements InterfaceCarsharing
         }
         return 'Возраст водителя соответствует требованиям';
     }
+
+    abstract  public function __construct();
 
     abstract public function cost($kmNumber, $minNumber, $age, $pricePerKm, $pricePerTime);
 }

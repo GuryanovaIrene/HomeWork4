@@ -1,5 +1,5 @@
 <?php
-namespace carcharing;
+namespace carsharing;
 
 interface InterfaceCarsharing
 {

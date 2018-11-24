@@ -1,11 +1,19 @@
 <?php
-namespace carcharing;
+namespace carsharing;
 
 class TariffStudent extends TariffBase
 {
     public $kmNumber;
     public $minNumber;
     public $age;
+    public $addGps;
+    public $addDriver;
+
+    public function __construct()
+    {
+        $addGps = 0;
+        $addDriver = 0;
+    }
 
     public function cost($kmNumber, $minNumber, $age, $pricePerKm = 4, $pricePerMinute = 1)
     {

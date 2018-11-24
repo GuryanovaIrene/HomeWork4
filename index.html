@@ -11,7 +11,7 @@
         <tr>
             <td>Выберите тариф</td>
             <td>
-                <select name="tariff">
+                <select name="tariff" id="tariff">
                     <option value="TariffBase">Тариф базовый</option>
                     <option value="TariffHourly">Тариф почасовой</option>
                     <option value="TariffDaily">Тариф суточный</option>
@@ -30,6 +30,14 @@
         <tr>
             <td>Возраст водителя</td>
             <td><input type="number" name="age"></td>
+        </tr>
+        <tr id="addGps">
+            <td>GPS в салон</td>
+            <td><input type="checkbox" name="addGps"/></td>
+        </tr>
+        <tr id="addDriver">
+            <td>Дополнительный водитель</td>
+            <td><input type="checkbox" name="addDriver"/></td>
         </tr>
         <tr>
             <td></td>
