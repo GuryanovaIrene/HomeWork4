@@ -6,6 +6,7 @@ class TariffBase extends Carsharing
     protected $kmNumber;
     protected $minNumber;
     protected $age;
+    protected $timeNumber;
     public $errors = [];
 
     public function ageAnalysis($age) // Метод анализа возраста водителя
