@@ -5,19 +5,10 @@ namespace carsharing;
 
 trait AddGps
 {
-    public function cost($kmNumber, $minNumber, $age, $pricePerKm, $pricePerTime) {
-        switch ($this->tariff) {
-            case 'TariffHourly':
-                $timeNumber = ceil($minNumber / 60);
-                break;
-            case 'TariffDaily':
-                $timeNumber = ceil(($minNumber - 30) / (60 * 24));
-                break;
-        }
-        $cost = parent::cost($kmNumber, $timeNumber, $age, $pricePerKm, $pricePerTime);
+    public function cost($pricePerKm, $pricePerTime) {
         if ($this->addGps) {
-            $hourNumber = ceil($minNumber / 60);
-            return $cost + $hourNumber;
+            $hourNumber = ceil($this->minNumber / 60);
+            return $cost + 15 * $hourNumber;
         }
         return $cost;
     }
