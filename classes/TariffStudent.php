@@ -3,27 +3,15 @@ namespace carsharing;
 
 class TariffStudent extends TariffBase
 {
-    public function __construct($kmNumber, $minNumber, $age)
+    const DRIVER_NOT_YOUNG = 'Возраст водителя не может быть более 25 лет!!!';
+    public function __construct($kmNumber, $minNumber, $age, $addGps)
     {
-        parent::__construct($kmNumber, $minNumber, $age);
+        parent::__construct($kmNumber, $minNumber, $age, $addGps);
+        $this->tariffName = 'Тариф студенческий';
+        $this->pricePerTime = 1;
+        $this->pricePerKm = 4;
         if ($this->age > 25) {
-            $this->errors[] = 'Возраст водителя не может быть более 25 лет!!!';
+            $this->errors[] = TariffStudent::DRIVER_NOT_YOUNG;
         }
-    }
-
-    public function addNote()
-    {
-        return 'без дополнительных услуг';
-    }
-
-    public function tariffDescribe()
-    {
-        return 'Тариф студенческий (' . $this->kmNumber . ' км, ' . $this->minNumber . ' мин., ' .
-            $this->age . ' лет, ' . $this->addNote() . ')';
-    }
-
-    public function cost($pricePerKm = 4, $pricePerMinute = 1)
-    {
-        return parent::cost($pricePerKm, $pricePerMinute);
     }
 }

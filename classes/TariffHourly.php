@@ -5,45 +5,22 @@ use carsharing\AddDriver;
 
 class TariffHourly extends TariffBase
 {
-    use AddGps;
-    use AddDriver;
-
-    public $addGps;
     public $addDriver;
 
     public function __construct($kmNumber, $minNumber, $age, $addGps, $addDriver)
     {
-        parent::__construct($kmNumber, $minNumber, $age);
+        parent::__construct($kmNumber, $minNumber, $age, $addGps);
+
+        $this->tariffName = 'Тариф почасовой';
+        $this->pricePerTime = 200;
+        $this->pricePerKm = 0;
+
         $this->timeNumber = ceil($this->minNumber / 60);
-        $this->addGps = $addGps;
-        $this->addDriver = $addDriver;
-    }
 
-    public function addNote()
-    {
-        $addNote = '';
-        if ($this->addGps) {
-            $addNote .= 'GPS в салон; ';
+        if (isset($addDriver)) {
+            if ($addDriver) {
+                $this->options['Driver'] = 100;
+            }
         }
-        if ($this->addDriver) {
-            $addNote .= 'дополнительный водитель; ';
-        }
-        if ($addNote != '') {
-            $addNote = 'дополнительные услуги: ' . substr($addNote, 0, strlen($addNote) - 2);
-        } else {
-            $addNote = 'без дополнительных услуг';
-        }
-        return $addNote;
-    }
-
-    public function tariffDescribe()
-    {
-        return 'Тариф почасовой (' . $this->kmNumber . ' км, ' . $this->minNumber . ' мин., ' .
-            $this->age . ' лет, ' . $this->addNote() . ')';
-    }
-
-    public function cost($pricePerKm = 0, $pricePerHour = 200)
-    {
-        return parent::cost($pricePerKm, $pricePerHour);
     }
 }
