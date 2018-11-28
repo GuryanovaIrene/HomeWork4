@@ -67,7 +67,7 @@ class TariffBase extends Carsharing
         if (isset($addGps)) {
             if ($addGps) {
                 $hourCount = ceil($minNumber / 60);
-                $this->options['GPS'] = 15 * $hourCount;
+                $this->options['GPS в салон'] = 15 * $hourCount;
             }
         }
     }
