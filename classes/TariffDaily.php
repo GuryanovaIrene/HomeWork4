@@ -1,7 +1,5 @@
 <?php
 namespace carsharing;
-use carsharing\AddGps;
-use carsharing\AddDriver;
 class TariffDaily extends TariffBase
 {
     public $addDriver;
