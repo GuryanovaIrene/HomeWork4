@@ -19,7 +19,7 @@ class TariffDaily extends TariffBase
 
         if (isset($addDriver)) {
             if ($addDriver) {
-                $this->options['Driver'] = 100;
+                $this->options['Дополнительный водитель'] = 100;
             }
         }
     }
