@@ -1,5 +1,6 @@
 <?php
 
+require_once "classes/AddOptions.php";
 require_once "classes/InterfaceCarsharing.php";
 require_once "classes/Carsharing.php";
 require_once "classes/AddGps.php";
