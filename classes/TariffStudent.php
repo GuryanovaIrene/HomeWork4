@@ -1,6 +1,5 @@
 <?php
 namespace carsharing;
-
 class TariffStudent extends TariffBase
 {
     const DRIVER_NOT_YOUNG = 'Возраст водителя не может быть более 25 лет!!!';

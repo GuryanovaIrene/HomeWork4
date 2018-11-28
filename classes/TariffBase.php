@@ -1,8 +1,11 @@
 <?php
 namespace carsharing;
+use carsharing\AddOptions;
 
 class TariffBase extends Carsharing
 {
+    use AddOptions;
+
     const WO_ADD_OPTIONS = 'Без дополнительных услуг';
     const GPS = 'GPS в салон';
     const AGE_NOT_NUMBER = 'Введенный возраст водителя должен быть числом!!!';
@@ -12,7 +15,6 @@ class TariffBase extends Carsharing
     const ABSENT_MIN_NUMBER = 'Вы не ввели количество минут';
     const ABSENT_AGE = 'Вы не ввели количество лет';
     const OK = 'OK';
-
     protected $kmNumber;
     protected $minNumber;
     protected $age;
@@ -40,20 +42,17 @@ class TariffBase extends Carsharing
     public function __construct($kmNumber, $minNumber, $age, $addGps)
     {
         $this->tariffName = 'Тариф базовый';
-
         if (isset($kmNumber)) {
             $this->kmNumber = $kmNumber;
         } else {
             $this->errors[] = TariffBase::ABSENT_KM_NUMBER;
         }
-
         if (isset($minNumber)) {
             $this->minNumber = $minNumber;
             $this->timeNumber = $minNumber;
         } else {
             $this->errors[] = TariffBase::ABSENT_MIN_NUMBER;
         }
-
         if (isset($age)) {
             $this->age = $age;
             $ageAnalysis = $this->ageAnalysis($age);
@@ -63,7 +62,6 @@ class TariffBase extends Carsharing
         } else {
             $this->errors[] = TariffBase::ABSENT_AGE;
         }
-
         if (isset($addGps)) {
             if ($addGps) {
                 $hourCount = ceil($minNumber / 60);
@@ -101,11 +99,10 @@ class TariffBase extends Carsharing
             'Возраст водителя, лет' => $this->age,
             'Дополнительные услуги' => $this->addNote(),
             'Стоимость без дополнительных услуг, руб.' => $this->costWoOptions(),
-            'Стоимость дополнительных услуг, руб.' => $this->optionsCost(),
+            'Стоимость дополнительных услуг, руб.' => \carsharing\AddOptions::optionsCost($this->options),
             'Общая стоимость, руб.' => $this->cost()
         ];
     }
-
     public function tariffDescribe($characteristics) {
         echo '
 <table>
@@ -124,25 +121,25 @@ class TariffBase extends Carsharing
 
     public function cost()
     {
-        return $this->costWoOptions() + $this->optionsCost();
+        return $this->costWoOptions() + \carsharing\AddOptions::optionsCost($this->options);
+        //$this->optionsCost();
     }
 
     public function costWoOptions()
     {
         return ($this->pricePerKm * $this->kmNumber + $this->pricePerTime * $this->timeNumber) * $this->ageRate();
     }
-
+    /*
     public function optionsCost()
     {
+
         if (empty($this->options)) {
             return 0;
         }
-
         $cost = 0;
-
         foreach ($this->options as $option) {
             $cost += $option;
         }
         return $cost;
-    }
+    }*/
 }

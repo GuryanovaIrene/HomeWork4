@@ -1,5 +1,4 @@
 <?php
-
 require_once "classes/AddOptions.php";
 require_once "classes/InterfaceCarsharing.php";
 require_once "classes/Carsharing.php";
@@ -11,11 +10,11 @@ require_once "classes/TariffDaily.php";
 require_once "classes/TariffStudent.php";
 
 $tariffs = [];
-
 $tariffs[] = new \carsharing\TariffBase(15, 50, 48, true);
 $tariffs[] = new \carsharing\TariffHourly(15, 50, 48, true, true);
 $tariffs[] = new \carsharing\tariffDaily(15, 50, 48, true, true);
 $tariffs[] = new \carsharing\TariffStudent(15, 50, 22, true);
+
 foreach ($tariffs as $call) {
     $errors = $call->errors;
     if (count($errors) == 0) {
@@ -28,5 +27,3 @@ foreach ($tariffs as $call) {
     }
     echo '<br/>';
 }
-
-
