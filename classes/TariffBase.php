@@ -99,7 +99,7 @@ class TariffBase extends Carsharing
             'Возраст водителя, лет' => $this->age,
             'Дополнительные услуги' => $this->addNote(),
             'Стоимость без дополнительных услуг, руб.' => $this->costWoOptions(),
-            'Стоимость дополнительных услуг, руб.' => \carsharing\AddOptions::optionsCost($this->options),
+            'Стоимость дополнительных услуг, руб.' => $this->optionsCost($this->options),
             'Общая стоимость, руб.' => $this->cost()
         ];
     }
@@ -121,7 +121,7 @@ class TariffBase extends Carsharing
 
     public function cost()
     {
-        return $this->costWoOptions() + \carsharing\AddOptions::optionsCost($this->options);
+        return $this->costWoOptions() + $this->optionsCost($this->options);
         //$this->optionsCost();
     }
 
